@@ -1,0 +1,15 @@
+{
+  "name": "poctestes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "mocha": "^2.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

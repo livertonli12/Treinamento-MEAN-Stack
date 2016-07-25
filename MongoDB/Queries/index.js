@@ -1,0 +1,1 @@
+db.Restaurants.createIndex({ "name": 1 });

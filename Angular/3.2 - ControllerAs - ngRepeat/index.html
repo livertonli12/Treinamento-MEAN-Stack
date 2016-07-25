@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="treinamento">
+<head>
+	<meta charset="UTF-8">
+	<title>Treinamento MEAN Stack</title>
+</head>
+<body data-ng-controller="ExemploController as Exemplo">
+	<h1>{{Exemplo.titulo}}</h1>
+
+	<ul>
+		<li data-ng-repeat="mod in Exemplo.modulos">{{ mod.nome }} - {{ mod.qtdHoras }}</li>
+	</ul>
+
+	<script src="../vendor/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('treinamento', [])
+			.controller('ExemploController', ExemploController);
+
+		function ExemploController(){
+			var vm = this;
+			vm.titulo = "Módulos";
+			vm.modulos = [
+				{ nome: "MongoDB", qtdHoras: 2.5 },
+				{ nome: "Node.JS", qtdHoras: 2.5 },
+				{ nome: "Mongoose.JS", qtdHoras: 1 }
+			];
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+db.Restaurants.find({"name" : "Dj Reynolds Pub And Restaurant"}).explain("executionStats");
