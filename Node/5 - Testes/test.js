@@ -10,7 +10,7 @@ describe('minha funcionalidade', function(){
       throw 'Error!';
     });
   });
-})
+});
 
 describe('minha segunda funcionalidade', function(){
   it('funciona async', function(){
