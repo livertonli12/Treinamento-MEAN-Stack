@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Treinamento MEAN Stack</title>
+    <link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .form-control {
+            margin: 5px;
+        }
+        
+        .container {
+            max-width: 800px;
+        }
+        
+        .buttons {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body ng-controller="MainController" class="container">
+
+    <div class="text-center">
+        <h1>{{ name }}</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="criterioDeBusca" placeholder="O que você está buscando ?">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped" ng-show="employees.length > 0">
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Departamento</th>
+                </tr>
+                <tr ng-repeat="employee in employees | filter:criterioDeBusca">
+                    <td><input type="checkbox" ng-model="employee.selected" /></td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.cellphone }}</td>
+                    <td>{{ employee.department }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <form name="empForm">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" ng-model="emp.name" name="name" placeholder="Nome" ng-required="true" ng-minlength="10">
+                <input type="text" class="form-control" ng-model="emp.cellphone" name="cellphone" placeholder="Celular" ng-pattern="/^\d{5}-\d{4}$/">
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" ng-model="emp.email" name="email" placeholder="E-mail" ng-required="true">
+                <!-- 
+                    department.codigo as department.name for department in departments
+                    department.name group by department.floor for department in departments
+                  -->
+                <select class="form-control" ng-model="emp.department" ng-options="department.name as department.name group by department.floor for department in departments">
+                    <option value="">Selecione um departamento</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div ng-messages="empForm.name.$error" ng-show="empForm.name.$dirty">
+        <div ng-message="required" class="alert alert-danger">
+            Por favor, preencha o campo nome!
+        </div>
+        <div ng-message="minlength" class="alert alert-danger">
+            O campo nome deve ter no mínimo 10 caracteres.
+        </div>
+    </div>
+
+    <div ng-show="empForm.cellphone.$error.required && empForm.cellphone.$dirty" class="alert alert-danger">
+        Por favor, preencha o campo celular!
+    </div>
+    <div ng-show="empForm.cellphone.$error.pattern" class="alert alert-danger">
+        O campo celular deve ter o formato DDDDD-DDDD.
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" ng-class="'buttons'">
+            <button class="btn btn-primary btn-block" ng-click="addEmployee(emp)">Adicionar colaborador</button>
+            <button class="btn btn-danger btn-block" ng-click="removeEmployee(employees)" ng-if="isEmployeeSelected(employees)">Remover colaborador</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="./vendor/angular-messages/angular-messages.js"></script>
+
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/controllers/employeeController.js"></script>
+
+</body>
+
+</html>
