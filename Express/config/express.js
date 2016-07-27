@@ -20,6 +20,7 @@ module.exports = () => {
 	app.use(bodyParser.json());
 
 	require('../app/routes/employee.server.routes.js')(app);
-	
+	require('../app/routes/department.server.routes')(app);
+
 	return app;	
 };
