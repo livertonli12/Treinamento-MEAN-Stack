@@ -1,10 +1,10 @@
-angular.module('app').controller('MainController', function($scope, $http){
+angular.module('app').controller('MainController', function($scope, $http, employeeAPI, departmentsAPI){
     $scope.name = "Talent Management";
     $scope.employees = [];
     $scope.departments = [];
 
     var loadEmployees = function() {
-        $http.get('http://localhost:3000/api/employees').success(function(data){
+        employeeAPI.getEmployees().success(function(data){
             $scope.employees = data;
         }).error(function(data, status){
             $scope.message = "Erro: " + data;
@@ -12,7 +12,7 @@ angular.module('app').controller('MainController', function($scope, $http){
     };
 
     var loadDepartments = function() {
-        $http.get('http://localhost:3000/api/departments').success(function(data){
+        departmentsAPI.getDepartments().success(function(data){
             $scope.departments = data;
         }).error(function(data, status){
             $scope.message = "Erro: " + data;
@@ -20,7 +20,7 @@ angular.module('app').controller('MainController', function($scope, $http){
     };
 
     $scope.addEmployee = function(employee) {
-        $http.post('http://localhost:3000/api/employees', employee).success(function(data){
+        employeeAPI.saveEmployee().success(function(data){
             delete $scope.emp;
             $scope.empForm.$setPristine();
             loadEmployees();
