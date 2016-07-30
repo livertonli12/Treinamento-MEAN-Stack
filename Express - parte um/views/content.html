@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conteúdo</title>
+</head>
+<body>
+    <h1><%= title %></h1>
+
+    <ul>
+        <% topics.forEach(function(topic){ %>
+            <li>Tópico: <%= topic.name %> - Carga Horária: <%= topic.hours %> </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
