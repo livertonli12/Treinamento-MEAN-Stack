@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = function () {
-	var dbUri = 'mongodb://linkapiAdmin:MahRiaNah!@104.41.35.101:33003/integrador?authSource=admin';
+	var dbUri = 'mongodb://username:password@host:password/database';
 
 	var db = mongoose.connect(dbUri);
 

@@ -1,6 +1,6 @@
 var mongodb = require('mongodb');
 
-var uri = 'mongodb://MongoLab-5:DHo0ddXmhCtcSYYAUGY1grWrKNxnQKJOym5jphd9p3k-@ds060977.mongolab.com:60977/MongoLab-5';
+var uri = 'mongodb://user:password@host:port/database';
 
 mongodb.MongoClient.connect(uri, function(err, db){
   if(err){
